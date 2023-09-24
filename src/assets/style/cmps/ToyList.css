@@ -1,0 +1,29 @@
+.toy-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toy-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    border: 1px solid rgba(189, 189, 189, 0.424);
+}
+
+.toy-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toy-story {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.add-toy-btn {
+    display: flex;
+    width: max-content;
+}
