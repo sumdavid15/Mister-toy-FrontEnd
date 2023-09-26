@@ -5,6 +5,7 @@ import { ToyList } from "../cmps/ToyList"
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { ToyFilter } from "../cmps/ToyFilter"
 import { SET_FILTER_BY } from "../store/reducers/toy.reducer"
+import { Link } from "react-router-dom"
 
 export function ToyIndex() {
 
@@ -38,9 +39,11 @@ export function ToyIndex() {
     }
 
     return (
-        <main>
-            <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-            <section>
+        <main className="toy-index">
+            <section className="toy-index-action">
+                <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+            </section>
+            <section className="toy-list">
                 {isLoading && <div>Loading...</div>}
                 {!isLoading && <ToyList toys={toys} onRemoveToy={onRemoveToy} />}
             </section>

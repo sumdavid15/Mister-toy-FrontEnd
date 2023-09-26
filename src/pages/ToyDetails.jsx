@@ -40,7 +40,7 @@ export function ToyDetails() {
                 )}
             </div>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptas cumque tempore, aperiam sed dolorum rem! Nemo quidem, placeat perferendis tempora aspernatur sit, explicabo veritatis corrupti perspiciatis repellat, enim quibusdam!</p>
-            <Link to="/toy"><button><i className="fa-solid fa-arrow-left"></i></button></Link>
+            <Link to="/toy"><button title="Back to shop"><i className="fa-solid fa-arrow-left"></i></button></Link>
         </section>
     )
 }

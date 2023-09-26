@@ -11,13 +11,6 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
     const [selectedLabels, setSelectedLabels] = useState([])
 
-    // onSetFilter = useRef(utilService.debounce(onSetFilter))
-
-    // useEffect(() => {
-    //     onSetFilter.current(filterByToEdit)
-    //     console.log('selectedLabels:', selectedLabels)
-    // }, [filterByToEdit])
-
     useEffect(() => {
         onSetFilter({ ...filterByToEdit })
     }, [filterByToEdit])
@@ -33,9 +26,11 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     }
 
     return (
-        <section className="toy-filter">
+        <section className="toy-filter" >
             <div className="toy-form">
-                <input type="text"
+                <button title="Add your Toy" className="add-toy-btn"><Link to={`/toy/edit`}>Add-toy</Link></button>
+
+                <input type="text" title="Search toy by name"
                     id="name"
                     name="name"
                     placeholder="By name"
@@ -43,8 +38,9 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                     onChange={handleChange}
                 />
                 <SortToy onChange={handleChange} />
-                <section style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div >
+                <section >
+
+                    <div className="toy-filter-instock">
                         <label htmlFor="all">
                             {' '}
                             All <input type="radio" name="inStock" value="all" id="all" onChange={handleChange} />{' '}
@@ -59,17 +55,23 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                         </label>
                     </div>
                 </section>
-                <button title="sort direction" onClick={() => {
+                <button style={{ width: '100%' }} title="sort direction" onClick={() => {
                     setFilterByToEdit(({ ...filterByToEdit, dir: !filterByToEdit.dir }))
                 }}><i className="fa-solid fa-arrows-up-down"></i></button>
             </div>
-            <Select options={labels}
+            <Select
+                styles={{
+                    container: (baseStyles, state) => ({
+                        ...baseStyles,
+                        width: '100%',
+                    })
+                }}
+                options={labels}
                 name="labels"
                 value={labels.filter(label => selectedLabels.includes(label.value))}
                 onChange={(selectedOption) => {
                     handleLabelChange(selectedOption)
                     setFilterByToEdit({ ...filterByToEdit, labels: selectedOption })
-                    console.log(filterByToEdit);
                 }}
                 isMulti />
         </section>

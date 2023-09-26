@@ -1,0 +1,30 @@
+.toy-filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: calibri;
+    width: 100%;
+    max-width: em(300px);
+    margin: 0 auto;
+
+    &-instock {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+.toy-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    // align-items: start;
+    width: 100%;
+    gap: 1rem;
+}

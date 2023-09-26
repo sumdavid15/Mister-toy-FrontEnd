@@ -1,6 +1,6 @@
 import { Route, HashRouter as Router, Routes } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import './assets/style/main.css'
+import './assets/style/main.scss'
 
 import { AboutUs } from './pages/AboutUs'
 import { AppHeader } from './cmps/AppHeader'
@@ -10,6 +10,7 @@ import { AppFooter } from './cmps/AppFooter'
 import { ToyIndex } from './pages/ToyIndex'
 import { ToyDetails } from './pages/ToyDetails'
 import { ToyEdit } from './pages/ToyEdit'
+import { DashBoard } from './pages/DashBoard'
 
 
 export function App() {
@@ -17,9 +18,9 @@ export function App() {
     return (
         <Provider store={store}>
             <Router>
-                <section className="main-layout app flex flex flex-column " style={{ minHeight: '100vh' }}>
+                <section className="app-main-layout">
                     <AppHeader />
-                    <main style={{ flexGrow: 1 }}>
+                    <main className="app-main-layout-main">
                         <Routes>
                             <Route element={<HomePage />} path="/" />
                             <Route element={<AboutUs />} path="/about" />
@@ -27,6 +28,7 @@ export function App() {
                             <Route element={<ToyDetails />} path="/toy/:toyId" />
                             <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
                             <Route element={<ToyEdit />} path="/toy/edit" />
+                            <Route element={<DashBoard />} path="/dashboard" />
                         </Routes>
                     </main>
                     <AppFooter />

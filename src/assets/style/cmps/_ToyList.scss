@@ -2,12 +2,22 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+    max-width: 1400px;
+
+    @media(max-width: 600px) {
+        padding: 0;
+    }
 }
 
 .toy-card {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    width: em(300px);
     padding: 1em;
+    gap: 5px;
     border: 1px solid rgba(189, 189, 189, 0.424);
 }
 
@@ -15,12 +25,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: em(10px);
 }
 
 .toy-story {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: em(10px);
 }
 
 .add-toy-btn {

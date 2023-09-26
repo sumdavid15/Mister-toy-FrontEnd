@@ -1,0 +1,27 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--clr1);
+  color: var(--clr1bg);
+  padding: em(16px);
+  box-shadow: 1px 1px 6px black;
+
+
+  &-logo {
+    font-size: 35px;
+    font-family: calibri;
+  }
+
+  &-nav {
+    font-family: calibri;
+    display: flex;
+    gap: em(10px);
+  }
+
+  @media(max-width: 600px) {
+    &-nav {
+      flex-wrap: wrap;
+    }
+  }
+}

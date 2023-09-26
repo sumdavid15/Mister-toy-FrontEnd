@@ -6,9 +6,12 @@ export function ToyPreview({ toy }) {
 
     return (
         <div className="toy-preview">
-            <h1>ToyName: {toy.name}</h1>
+            <div className="flex justify-center">
+                <img width={100} src={utilService.getAssetSrc(toy.img)} alt="" />
+            </div>
+            <h1 >ToyName: {toy.name}</h1>
             <p>Price: {toy.price}</p>
-            <p>In-stock :{toy.inStock ? 'Yes' : 'out of stock'} </p>
+            <p>{toy.inStock ? 'In stock' : 'Out of stock'} </p>
             <div className="toy-label-container">
                 {toy.labels.map(label =>
                     <div className="toy-label" key={utilService.makeId()} style={{ backgroundColor: { randomColor } }}>
@@ -16,7 +19,7 @@ export function ToyPreview({ toy }) {
                     </div>
                 )}
             </div>
-        </div>
+        </div >
     )
 
 }

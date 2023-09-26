@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { showErrorMsg } from "../services/event-bus.service"
 import { toyService } from "../services/toy.service"
 import Select from "react-select"
@@ -9,7 +9,6 @@ export function ToyEdit() {
     const [selectedLabels, setSelectedLabels] = useState([])
     const { toyId } = useParams()
     const navigate = useNavigate()
-    console.log('selectedLabels:', selectedLabels)
 
     const labels = toyService.getLabels()
 
@@ -69,6 +68,7 @@ export function ToyEdit() {
     if (!toy) return <div>loading...</div>
     return (
         <div>
+            <Link to="/toy"><button title="Back to shop"><i className="fa-solid fa-arrow-left"></i></button></Link>
             <form onSubmit={handleSubmit}>
                 <div>
                     Name:

@@ -17,19 +17,19 @@ h4,
 h5,
 h6 {
   margin: .5em 0 .5em;
-  font-family: 'Edu VIC WA NT Beginner', cursive;
+  font-family: calibri;
 }
 
 p {
+  font-family: calibri;
   margin: 0;
 }
 
 a {
+  font-family: calibri;
   text-decoration: none;
   color: unset;
 }
-
-
 
 /* Dont stretch my Media */
 img,
@@ -46,6 +46,7 @@ object {
 
 a.active {
   text-decoration: overline;
+  color: var(--clr2bg);
 }
 
 .popup-menu {

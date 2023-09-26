@@ -43,7 +43,7 @@ export function AboutUs() {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni aperiam quo veniam velit dolor reprehenderit, laudantium consequatur neque numquam labore quae. Accusamus libero perferendis ducimus? Alias unde hic quisquam doloremque.</p>
             <section className="map-container" >
                 <GoogleMap coordinates={coordinates} />
-                <div className="store-container" style={{ width: 300 }}>
+                <div className="store-container">
                     {storeLocations.map(store =>
                         <StorePreview key={utilService.makeId()} store={store} setCenterCoordinates={setCenterCoordinates} />
                     )}
