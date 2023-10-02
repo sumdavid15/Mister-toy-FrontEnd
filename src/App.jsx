@@ -11,7 +11,9 @@ import { ToyIndex } from './pages/ToyIndex'
 import { ToyDetails } from './pages/ToyDetails'
 import { ToyEdit } from './pages/ToyEdit'
 import { DashBoard } from './pages/DashBoard'
-
+import { UserMsg } from './cmps/UserMsg'
+import { LoginSignup } from './pages/LoginSignup'
+import { ToyMsg } from './pages/ToyMsg'
 
 export function App() {
 
@@ -29,9 +31,12 @@ export function App() {
                             <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
                             <Route element={<ToyEdit />} path="/toy/edit" />
                             <Route element={<DashBoard />} path="/dashboard" />
+                            <Route element={<LoginSignup />} path="/login" />
+                            <Route element={<ToyMsg />} path="/toy/:toyId/msg" />
                         </Routes>
                     </main>
                     <AppFooter />
+                    <UserMsg />
                 </section>
             </Router>
         </Provider>

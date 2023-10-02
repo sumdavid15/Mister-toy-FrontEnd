@@ -7,7 +7,9 @@ export const toyService = {
     remove,
     getEmptyToy: getEmptyToy,
     getDefaultFilter,
-    getLabels
+    getLabels,
+    addMsg,
+    removeMsg,
 }
 
 const labels = [
@@ -26,7 +28,6 @@ function getLabels() {
 }
 
 function query(filterBy) {
-    console.log('filterBy:', filterBy)
     return httpService.get('toy', { params: { filterBy } })
 }
 
@@ -53,6 +54,14 @@ function getEmptyToy() {
         labels: [],
         inStock: false,
     }
+}
+
+function addMsg(txt, toyId) {
+    return httpService.post(`toy/${toyId}/msg`, { txt })
+}
+
+function removeMsg(msgId, toyId) {
+    return httpService.delete(`toy/${toyId}/msg`, { msgId })
 }
 
 function getDefaultFilter() {

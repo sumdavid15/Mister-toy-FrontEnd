@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { showErrorMsg } from "../services/event-bus.service"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { toyService } from "../services/toy.service"
 import Select from "react-select"
 
@@ -22,26 +22,27 @@ export function ToyEdit() {
         }
     }, [toyId])
 
-    function loadToy() {
-        toyService.getById(toyId)
-            .then((toy) => {
-                setToy(toy)
-                setSelectedLabels(toy.labels)
-            })
-            .catch((err) => {
-                console.log('loadToy err:', err)
-                showErrorMsg('Cannot load toy')
-            })
+    async function loadToy() {
+        try {
+            const toy = await toyService.getById(toyId)
+            setToy(toy)
+            setSelectedLabels(toy.labels)
+        } catch (error) {
+            console.log('loadToy err:', err)
+            showErrorMsg('Cannot load toy')
+        }
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
-        toyService.save({ ...toy, labels: selectedLabels })
-            .then(() => navigate('/toy'))
-            .catch((err) => {
-                console.log('handleSubmit err:', err)
-                showErrorMsg(`Could not ${toy._id ? 'edit' : 'add'} toy`)
-            })
+        try {
+            await toyService.save({ ...toy, labels: selectedLabels })
+            showSuccessMsg(` ${toy._id ? 'Editet' : 'Added'} toy`)
+            navigate('/toy')
+        } catch (err) {
+            console.log('handleSubmit err:', err)
+            showErrorMsg(`Could not ${toy._id ? 'edit' : 'add'} toy`)
+        }
     };
 
     function handleLabelChange(selectedOptions) {
@@ -55,6 +56,13 @@ export function ToyEdit() {
             setToy({
                 ...toy,
                 [name]: !toy.inStock,
+            })
+            return
+        }
+        if (name === 'price') {
+            setToy({
+                ...toy,
+                [name]: +value,
             })
             return
         }

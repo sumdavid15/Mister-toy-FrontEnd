@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState } from "react"
-import { utilService } from "../services/util.service"
+import { useEffect, useState } from "react"
 import { SortToy } from "./SortToy"
 import Select from "react-select"
 import { toyService } from "../services/toy.service"
 import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 export function ToyFilter({ filterBy, onSetFilter }) {
 
+    const user = useSelector(storeState => storeState.userModule.loggedinUser)
     const labels = toyService.getLabels()
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
     const [selectedLabels, setSelectedLabels] = useState([])
@@ -21,14 +22,14 @@ export function ToyFilter({ filterBy, onSetFilter }) {
         setFilterByToEdit(({ ...filterByToEdit, [field]: value }))
     }
 
-    function handleLabelChange(selectedOptions) {
-        setSelectedLabels(selectedOptions.map(option => option.value))
+    function handleLabelChange(labels) {
+        setSelectedLabels(labels)
     }
 
     return (
         <section className="toy-filter" >
             <div className="toy-form">
-                <button title="Add your Toy" className="add-toy-btn"><Link to={`/toy/edit`}>Add-toy</Link></button>
+                {(user && user.isAdmin) && <button title="Add your Toy" className="add-toy-btn"><Link to={`/toy/edit`}>Add-toy</Link></button>}
 
                 <input type="text" title="Search toy by name"
                     id="name"
@@ -70,10 +71,11 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                 name="labels"
                 value={labels.filter(label => selectedLabels.includes(label.value))}
                 onChange={(selectedOption) => {
-                    handleLabelChange(selectedOption)
-                    setFilterByToEdit({ ...filterByToEdit, labels: selectedOption })
+                    const labels = selectedOption.map(label => label.value)
+                    handleLabelChange(labels)
+                    setFilterByToEdit({ ...filterByToEdit, labels: labels })
                 }}
                 isMulti />
-        </section>
+        </section >
     )
 }

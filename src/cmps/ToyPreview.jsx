@@ -7,7 +7,7 @@ export function ToyPreview({ toy }) {
     return (
         <div className="toy-preview">
             <div className="flex justify-center">
-                <img width={100} src={utilService.getAssetSrc(toy.img)} alt="" />
+                <img width={100} src={utilService.getAssetSrc(toy.img || 'logo2.svg')} alt="" />
             </div>
             <h1 >ToyName: {toy.name}</h1>
             <p>Price: {toy.price}</p>
@@ -22,13 +22,4 @@ export function ToyPreview({ toy }) {
         </div >
     )
 
-}
-
-const toy = {
-    _id: 't101',
-    name: 'Talking Doll',
-    price: 123,
-    labels: ['Doll', 'Battery Powered', 'Baby'],
-    createdAt: 1631031801011,
-    inStock: true,
 }

@@ -2,10 +2,8 @@ import { useEffect } from "react"
 import { loadToys, removeToyOptimistic } from "../store/actions/toy.actions"
 import { useDispatch, useSelector } from "react-redux"
 import { ToyList } from "../cmps/ToyList"
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { ToyFilter } from "../cmps/ToyFilter"
 import { SET_FILTER_BY } from "../store/reducers/toy.reducer"
-import { Link } from "react-router-dom"
 
 export function ToyIndex() {
 
@@ -16,22 +14,10 @@ export function ToyIndex() {
 
     useEffect(() => {
         loadToys()
-            .catch(err => {
-                console.log('err:', err)
-                showErrorMsg('Cannot load toys')
-            })
     }, [filterBy])
 
-    function onRemoveToy(toyId) {
-        removeToyOptimistic(toyId)
-            .then(() => {
-                console.log(`deleted ${toyId}`);
-                showSuccessMsg('toy removed')
-            })
-            .catch(err => {
-                console.log('Cannot remove toy', err)
-                showErrorMsg('Cannot remove toy')
-            })
+    async function onRemoveToy(toyId) {
+        await removeToyOptimistic(toyId)
     }
 
     function onSetFilter(filterBy) {
